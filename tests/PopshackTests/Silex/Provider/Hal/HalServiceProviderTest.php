@@ -42,9 +42,17 @@ class HalServiceProviderTest extends TestCase
     {
         $app = new Application();
         $app->register(new HalServiceProvider());
+        $uri = '/orders';
+        $data = array(
+            'total' => 30.00,
+            'currency' => 'USD',
+        );
+        $hal = $app['hal']($uri, $data);
         $this->assertInstanceOf(
             '\NoCarrier\Hal',
-            $app['hal']
+            $hal
         );
+        $this->assertEquals($uri, $hal->getUri());
+        $this->assertEquals($data, $hal->getData());
     }
 }
