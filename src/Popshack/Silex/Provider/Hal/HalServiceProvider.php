@@ -41,13 +41,18 @@ class HalServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        $app['hal'] = $app->share(
-            function ($app) {
-                return new Hal();
-            }
+        $app['hal'] = $app->protect(
+           function ($link, array $data = array()) use ($app) {
+                return new Hal($link, $data);
+           }
         );
     }
 
+    /**
+     * Implementation of \Silex\ServiceProviderInterface::boot()
+     *
+     * @param Application $app
+     */
     public function boot(Application $app)
     {
     }
