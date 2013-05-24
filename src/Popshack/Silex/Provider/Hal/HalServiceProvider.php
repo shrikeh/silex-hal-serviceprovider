@@ -7,7 +7,7 @@
  * @category   Provider
  * @package    Popshack
  * @subpackage Silex
- * @author     Popshack
+ * @author     Popshack <dev@popshack.com>
  * @copyright  2013 Popshack. All rights reserved.
  * @license    MIT http://opensource.org/licenses/MIT
  * @link       https://github.com/PopShack/silex-hal-serviceprovider
@@ -41,9 +41,11 @@ class HalServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        $app['hal'] = $app->share(function($app) {
-            return new Hal();
-        });
+        $app['hal'] = $app->share(
+            function ($app) {
+                return new Hal();
+            }
+        );
     }
 
     public function boot(Application $app)
