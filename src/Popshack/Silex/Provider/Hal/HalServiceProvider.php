@@ -1,0 +1,52 @@
+<?php
+/**
+ * Simple HAL provider for Silex.
+ *
+ * PHP version 5.3
+ *
+ * @category   Provider
+ * @package    Popshack
+ * @subpackage Silex
+ * @author     Popshack
+ * @copyright  2013 Popshack. All rights reserved.
+ * @license    MIT http://opensource.org/licenses/MIT
+ * @link       https://github.com/PopShack/silex-hal-serviceprovider
+ */
+namespace Popshack\Silex\Provider\Hal;
+
+use \Silex\Application;
+use \Silex\ServiceProviderInterface;
+use \Nocarrier\Hal;
+
+/**
+ * Simple HAL provider for Silex.
+ *
+ * PHP version 5.3
+ *
+ * @category   Provider
+ * @package    Popshack
+ * @subpackage Silex
+ * @author     Popshack
+ * @copyright  2013 Popshack. All rights reserved.
+ * @license    MIT http://opensource.org/licenses/MIT
+ * @link       https://github.com/PopShack/silex-hal-serviceprovider
+ */
+class HalServiceProvider implements ServiceProviderInterface
+{
+    /**
+     * Return an instance of Hal.
+     *
+     * @param Application $app
+     * @return \Nocarrier\Hal
+     */
+    public function register(Application $app)
+    {
+        $app['hal'] = $app->share(function($app) {
+            return new Hal();
+        });
+    }
+
+    public function boot(Application $app)
+    {
+    }
+}
